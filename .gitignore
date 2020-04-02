@@ -1,8 +1,6 @@
 # dependencies
 node_modules
 # production
-build
-public
 config/keys.js
 # misc
 npm-debug.log*
