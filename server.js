@@ -34,8 +34,15 @@ app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 
+// Server react as static
+app.use(express.static("public"));
+
 // Routes
 app.use("/api/users", users);
+
+app.get("*", function(req, res) {
+    res.sendFile(__dirname + "/public/index.html");
+});
 
 const port = process.env.PORT;
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
