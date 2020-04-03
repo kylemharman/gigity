@@ -1,7 +1,10 @@
 # dependencies
 node_modules
 # production
-config/keys.js
+build
+public
+!client/public
+.idea
 # misc
 npm-debug.log*
 yarn-debug.log*
@@ -11,4 +14,3 @@ yarn-error.log*
 .envrc
 *.env
 *.dev
-node_modules

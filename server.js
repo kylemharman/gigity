@@ -19,7 +19,6 @@ app.use(bodyParser.json());
 
 // DB Config
 const db = process.env.DATABASE_URL;
-
 // Connect to MongoDB
 mongoose
     .connect(db, {
@@ -38,10 +37,5 @@ require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
 
-// Serve static assets if in production
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
-
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
