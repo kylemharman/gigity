@@ -6,9 +6,9 @@
     "scripts": {
         "start": "node server/index.js",
         "start-dev": "nodemon server.js",
-        "build-web": "yarn --cwd client install && yarn --cwd client build",
-        "deploy-web": "cp -a web/build/. public/",
-        "heroku-postbuild": "yarn build-web && yarn deploy-web"
+        "build-client": "yarn --cwd client install && yarn --cwd client build",
+        "deploy-client": "cp -a client/build/. public/",
+        "heroku-postbuild": "yarn build-client && yarn deploy-client"
     },
     "engines": {
         "node": "13.10.1"
