@@ -29,16 +29,15 @@ class Login extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
+    static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.auth.isAuthenticated) {
             this.props.history.push("/dashboard"); // push user to dashboard when they login
         }
-        if (nextProps.errors) {
-            this.setState({
-                errors: nextProps.errors
-            });
-        }
+        if (nextProps.errors !== prevState.errors) {
+            return { errors: nextProps.errors };
+        } else return null; // Triggers no change in the state
     }
+
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
@@ -65,6 +64,7 @@ class Login extends Component {
 
                     <form noValidate onSubmit={this.onSubmit}>
                         <Input
+                            autocomplete
                             onChange={this.onChange}
                             value={this.state.email}
                             error={errors.email}

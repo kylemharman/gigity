@@ -5,7 +5,7 @@ import NavLinks from "./NavLinks";
 import NavBurgerButton from "./NavBurgerButton";
 import NavOverlay from "./NavOverlay";
 
-const Navbar = () => {
+const Navbar = props => {
     const [mobileMenuState, setMobileMenuState] = useState(false);
 
     const toggleMenuHandler = () => {
