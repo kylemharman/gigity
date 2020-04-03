@@ -8,6 +8,9 @@ export const theme = {
         grey: "#BFBFBF",
         darkGrey: "#595959"
     },
+    fontFamily: {
+        family: "'Lato', sans-serif"
+    },
     fontSize: {
         s: "1rem",
         ms: "1.1em",

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const ContainerCenter = styled.div`
+export const Container = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: ${props => props.center && "center"};
     margin: 3rem;
 `;

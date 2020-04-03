@@ -10,7 +10,7 @@ import FormButton from "../components/forms/FormButton";
 import ErrorMessage from "../components/forms/ErrorMessage";
 
 import { FormContainer } from "../components/forms/Forms_Styles";
-import { ContainerCenter } from "../styles/GlobalStyles";
+import { Container } from "../styles/GlobalStyles";
 
 class Login extends Component {
     constructor() {
@@ -29,13 +29,15 @@ class Login extends Component {
         }
     }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
+    componentWillReceiveProps(nextProps) {
         if (nextProps.auth.isAuthenticated) {
             this.props.history.push("/dashboard"); // push user to dashboard when they login
         }
-        if (nextProps.errors !== prevState.errors) {
-            return { errors: nextProps.errors };
-        } else return null; // Triggers no change in the state
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
+        }
     }
 
     onChange = e => {
@@ -52,7 +54,7 @@ class Login extends Component {
     render() {
         const { errors } = this.state;
         return (
-            <ContainerCenter>
+            <Container center>
                 <FormContainer>
                     <h4>
                         <b>Login</b> below
@@ -104,7 +106,7 @@ class Login extends Component {
                         <FormButton type="submit">Login</FormButton>
                     </form>
                 </FormContainer>
-            </ContainerCenter>
+            </Container>
         );
     }
 }

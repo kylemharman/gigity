@@ -2,27 +2,40 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-const NavLinks = () => {
-    // <NavLink to="/dashboard" activeClassName="active-nav-link navlink">
-    //     Dashboard
-    // </NavLink>
-
+const NavLinks = props => {
     return (
         <NavLinksContainer>
-            <NavLink
-                to="/login"
-                activeClassName="active-nav-link"
-                className="navlink"
-            >
-                Login
-            </NavLink>
-            <NavLink
-                to="/register"
-                activeClassName="active-nav-link"
-                className="navlink"
-            >
-                Register
-            </NavLink>
+            {!props.isAuthenticated ? (
+                <React.Fragment>
+                    <NavLink
+                        to="/login"
+                        activeClassName="active-nav-link"
+                        className="navlink"
+                    >
+                        Login
+                    </NavLink>
+                    <NavLink
+                        to="/register"
+                        activeClassName="active-nav-link"
+                        className="navlink"
+                    >
+                        Register
+                    </NavLink>
+                </React.Fragment>
+            ) : (
+                <React.Fragment>
+                    <NavLink
+                        to="/dashboard"
+                        activeClassName="active-nav-link"
+                        className="navlink"
+                    >
+                        Dashboard
+                    </NavLink>
+                    <button onClick={props.logout} className="logout-button">
+                        Logout
+                    </button>
+                </React.Fragment>
+            )}
         </NavLinksContainer>
     );
 };
@@ -33,6 +46,17 @@ const NavLinksContainer = styled.div`
     .navlink {
         padding: 22px;
         font-size: ${props => props.theme.fontSize.ms};
+    }
+
+    .logout-button {
+        font-size: ${props => props.theme.fontSize.ms};
+        font-family: ${props => props.theme.fontFamily.family};
+        background-color: transparent;
+        outline: 0;
+        cursor: pointer;
+        border: none;
+        font-weight: 300;
+        padding: 0 22px;
     }
 
     .active-nav-link {
@@ -49,10 +73,12 @@ const NavLinksContainer = styled.div`
         .active-nav-link {
             border: none;
         }
-        .navlink {
+        .navlink,
+        .logout-button {
             color: ${props => props.theme.color.dark};
-            padding: 22px;
             font-size: ${props => props.theme.fontSize.l};
+            padding: 22px;
+            text-align: left;
         }
     }
 `;

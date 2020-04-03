@@ -11,7 +11,7 @@ import FormButton from "../components/forms/FormButton";
 import ErrorMessage from "../components/forms/ErrorMessage";
 
 import { FormContainer } from "../components/forms/Forms_Styles";
-import { ContainerCenter } from "../styles/GlobalStyles";
+import { Container } from "../styles/GlobalStyles";
 
 class Register extends Component {
     constructor() {
@@ -32,10 +32,18 @@ class Register extends Component {
         }
     }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.errors !== prevState.errors) {
-            return { errors: nextProps.errors };
-        } else return null; // Triggers no change in the state
+    // static getDerivedStateFromProps(nextProps, prevState) {
+    //     if (nextProps.errors !== prevState.errors) {
+    //         return { errors: nextProps.errors };
+    //     } else return null; // Triggers no change in the state
+    // }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
+        }
     }
 
     onChange = e => {
@@ -54,7 +62,7 @@ class Register extends Component {
     render() {
         const { errors } = this.state;
         return (
-            <ContainerCenter>
+            <Container center>
                 <FormContainer>
                     <h4>
                         <b>Register</b> below
@@ -127,7 +135,7 @@ class Register extends Component {
                         <FormButton type="submit">Sign up</FormButton>
                     </form>
                 </FormContainer>
-            </ContainerCenter>
+            </Container>
         );
     }
 }
