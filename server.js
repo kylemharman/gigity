@@ -34,8 +34,7 @@ app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 
-// Server react as static
-app.use(express.static("public"));
+app.use(express.static("public")); // the React app will be bundled and placed in the public folder
 
 // Routes
 app.use("/api/users", users);
